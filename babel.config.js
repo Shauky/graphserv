@@ -21,7 +21,7 @@ module.exports = {
                     },
                 ],
             ],
-            plugins: ['add-module-exports'],
+            plugins: ['add-module-exports', '@babel/plugin-syntax-jsx'],
         },
         production: {
             presets: [
