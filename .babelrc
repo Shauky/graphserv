@@ -1,3 +1,18 @@
 {
-  "presets": ["react"]
+  "presets": [
+      [
+          "@babel/preset-env",
+          {
+              "targets": {
+                  "chrome": 74,
+                  "esmodules": true
+              }
+          }
+        ],
+
+        "@babel/preset-react"
+    ],
+    "plugins":  [
+        "@babel/plugin-transform-runtime",
+       ]
 }

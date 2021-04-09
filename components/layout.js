@@ -1,10 +1,15 @@
+import 'regenerator-runtime/runtime'
+import React from 'react';
+import ReactDOM from 'react-dom';
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from './layout.module.css'
 import utilStyles from '../styles/utils.module.css'
 import Link from 'next/link'
 
-const name = 'TutorCast Admin'
+
+
+const name = 'Quran Series'
 export const siteTitle = 'Books and Tools with Tutorcast'
 
 export default function Layout({ children, home }) {

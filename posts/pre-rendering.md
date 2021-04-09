@@ -1,5 +1,5 @@
 ---
-title: "Two Forms of Pre-rendering"
+title: "Pre-rendering Quran Scripts with Markdown"
 date: "2020-01-01"
 ---
 

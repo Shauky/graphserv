@@ -20,9 +20,13 @@ const defaultConfig = {
                 test: /(\.jsx|\.js)$/,
                 loader: 'babel-loader',
                 exclude: /(node_modules|bower_components)/,
-            },
-        ],
-    },
+                query: {
+                  presets: ['@babel/react', '@babel/preset-env'],
+                  plugins: ['@babel/proposal-class-properties']
+                }
+              },
+            ],
+          },
     resolve: {
         modules: [path.resolve('./node_modules'), path.resolve('./src')],
         extensions: ['.mjs', '.json', '.js'],
