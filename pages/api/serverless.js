@@ -1,29 +1,58 @@
-#!/usr/bin/env node
-require('reify');
+import { ApolloServer, gql } from 'apollo-server-micro';
 var path = require('path');
-var express = require('express');
-var cors = require('cors');
-var JsonGraphqlServer = require('../../lib/json-graphql-server.node.min').default;
+var data = require('./jsondata.json');
+
+const Posts = [data];
+
+const typeDefs = gql`
+    type Posts {
+        id: ID!
+        description: String
+        public: String
+        created_at: String
+        files: String
+        owner: String
+        div: String
+        stylesheet: String
+      }
+
+    type PostsPage {
+        items: [Posts]
+        totalCount: Int
+    }
+
+    type Query {
+        getPostsPage(page: Int, perPage: Int, sortField: String, sortOrder: String, filter: String): PostsPage
+        getPosts(id: ID!): [Posts]
+        Posts(id: ID!): [Posts]
+
+    }
+
+    type Mutation {
+        createPosts(data: String): Posts
+        updatePosts(data: String): Posts
+        removePosts(id: ID!): Boolean
+    }
+`;
 
 
-var dataFilePath = process.argv.length > 2 ? process.argv[2] : '../../public/data.js';
-var data = require(path.join(process.cwd(), dataFilePath));
-var PORT = process.env.NODE_PORT || 3000;
-var app = express();
+const resolvers = {
+  Query: {
+    getPosts: () => {
+      return Posts;
+    },
+  },
+};
 
-process.argv.forEach((arg, index) => {
-  // allow a custom port via CLI
-  if (arg === '--p' && process.argv.length > index + 1) {
-    PORT = process.argv[index + 1];
-  }
+
+const server = new ApolloServer({ typeDefs, resolvers });
+
+export default server.createHandler({
+  path: '/api/serverless',
 });
 
-app.use(cors());
-app.use('/', JsonGraphqlServer(data));
-app.listen(PORT);
-var msg = `GraphQL server running with your data at http://localhost:${PORT}/`;
-console.log(msg); // eslint-disable-line no-console
-
-process.on('unhandledRejection', (reason, p) => {
-  console.log('Unhandled Rejection at: Promise', p, 'reason:', reason);
-});
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};

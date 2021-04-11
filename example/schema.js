@@ -1,14 +1,14 @@
 export default `
     type Posts {
         id: ID!
-        description: String
-        public: String
-        created_at: String
-        files: List
-        owner: String
-        div: String
-        stylesheet: String
-    }
+        first_name: String
+        last_namet: String
+        email: String
+        address: List
+        zipcode: String
+        city: String
+        avatar: String
+      }
 
     type PostsPage {
         items: [Posts]
@@ -26,3 +26,11 @@ export default `
         removePosts(id: ID!): Boolean
     }
 `;
+// id: ID!
+// description: String
+// public: String
+// created_at: String
+// files: List
+// owner: String
+// div: String
+// stylesheet: String

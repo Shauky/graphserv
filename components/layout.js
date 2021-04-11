@@ -1,6 +1,6 @@
 import 'regenerator-runtime/runtime'
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'
+import ReactDOM from 'react-dom'
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from './layout.module.css'

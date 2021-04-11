@@ -1,6 +1,6 @@
 const path = require('path');
 
-let libraryName = 'json-graphql-server';
+let libraryName = 'serverless';
 
 let plugins = [];
 let outputFile;
